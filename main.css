@@ -1,91 +1,74 @@
-.main-content {
-  overflow:hidden;
-    position: relative;
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-flow: column;
-    
-    height: 100vh;
-    
-    background: linear-gradient(to right, rgba(36,31,31,1) 0%, rgba(36,31,31,1) 32%, rgba(74,71,70,1) 100%);
-    color: #fff;
-    text-align: center;
+@import url('https://fonts.googleapis.com/css?family=Fira+Mono:400');
+
+body{ 
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  background: #131313;
+  color: #fff;
+  font-size: 96px;
+  font-family: 'Fira Mono', monospace;
+  letter-spacing: -7px;
 }
 
-.vignette{
-  position:absolute;
-  width:100%; height:100%;
-  box-shadow:inset 0px 0px 150px 20px black;
-  mix-blend-mode: multiply;
-  -webkit-animation: vignette-anim 3s infinite; /* Safari 4+ */
-  -moz-animation:    vignette-anim 3s infinite; /* Fx 5+ */
-  -o-animation:      vignette-anim 3s infinite; /* Opera 12+ */
-  animation:         vignette-anim 3s infinite; /* IE 10+, Fx 29+ */
+div{
+  animation: glitch 1s linear infinite;
 }
 
-.noise {
-    z-index: 100;
-    position: absolute;
-    top: 0;
-    left: 0;
-    
-    width: 100%;
-    height: 100%;
-    
-    pointer-events: none;
-    opacity: .15;
+@keyframes glitch{
+  2%,64%{
+    transform: translate(2px,0) skew(0deg);
+  }
+  4%,60%{
+    transform: translate(-2px,0) skew(0deg);
+  }
+  62%{
+    transform: translate(0,0) skew(5deg); 
+  }
 }
 
-.line{
-  position:absolute;
-  height:100%; width:1px;
-  opacity:0.1;
-  background-color:#000;
+div:before,
+div:after{
+  content: attr(title);
+  position: absolute;
+  left: 0;
 }
 
-.titleCont{position:relative;}
-
-.main-title {
-    padding: .3em 1em .25em;    
-    font-weight: 400;
-    font-size: 40px;
-    color: white;
-    font-family: 'Bellefair', serif;
-    position:relative;
-    line-height:1.3;
-    white-spacing:
+div:before{
+  animation: glitchTop 1s linear infinite;
+  clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
 }
 
-.overTitle{
-    position:absolute;
-    top:0;
-    left:0;
+@keyframes glitchTop{
+  2%,64%{
+    transform: translate(2px,-2px);
+  }
+  4%,60%{
+    transform: translate(-2px,2px);
+  }
+  62%{
+    transform: translate(13px,-1px) skew(-13deg); 
+  }
 }
 
-.dot{
-  width:3px;
-  height:2px;
-  background-color:white;
-  position:absolute;
-  opacity:0.3;
+div:after{
+  animation: glitchBotom 1.5s linear infinite;
+  clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+  -webkit-clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
 }
 
-
-@-webkit-keyframes vignette-anim {
-  0%   , 100%{ opacity: 1; }
-  50% { opacity: 0.7; }
-}
-@-moz-keyframes vignette-anim {
-  0%   , 100%{ opacity: 1; }
-  50% { opacity: 0.7; }
-}
-@-o-keyframes vignette-anim {
-  0%   , 100%{ opacity: 1; }
-  50% { opacity: 0.7; }
-}
-@keyframes vignette-anim {
-  0%   , 100%{ opacity: 1; }
-  50% { opacity: 0.7; }
+@keyframes glitchBotom{
+  2%,64%{
+    transform: translate(-2px,0);
+  }
+  4%,60%{
+    transform: translate(-2px,0);
+  }
+  62%{
+    transform: translate(-22px,5px) skew(21deg); 
+  }
 }
